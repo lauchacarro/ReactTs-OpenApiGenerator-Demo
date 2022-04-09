@@ -34,6 +34,9 @@ const HomePage: React.FC<HomePageProps> = () => {
 
   return (
     <div className="container">
+      <Button variant="primary" href="/create">
+          Crear Usuario
+        </Button>
       <Table striped bordered hover>
         <thead>
           <tr>

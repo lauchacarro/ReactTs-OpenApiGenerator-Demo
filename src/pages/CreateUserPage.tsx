@@ -1,5 +1,6 @@
 import React, { FormEvent, FormEventHandler, useEffect, useState } from "react";
 import { Button, Form, Table } from "react-bootstrap";
+import { usersApi } from "../data/apiClient";
 
 interface CreateUserPageProps {}
 
@@ -12,18 +13,14 @@ const CreateUserPage: React.FC<CreateUserPageProps> = () => {
   const handleSaveOnClick = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    fetch("https://localhost:44358/api/users", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        name: name,
-        lastname: lastname,
-        email: email,
-        isActive: isActive,
-      }),
+    usersApi.createUser({
+      name: name,
+      lastName: lastname,
+      email: email,
+      isActive: isActive,
     })
-      .then((response) => response.json())
-      .then((data) => (window.location.href = "/"));
+    .then((response) => (window.location.href = "/"));
+
   };
 
   return (

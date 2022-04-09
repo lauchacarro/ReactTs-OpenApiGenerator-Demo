@@ -18,7 +18,7 @@
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.0",
-    "rest-client": "file:generated-sources/openapi",
+    "rest-client": "file:src/generated-sources/openapi",
     "typescript": "^4.6.3",
     "web-vitals": "^2.1.4"
   },
@@ -27,7 +27,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "api": "openapi-generator-cli generate -i docs/openapi.json -g typescript-axios -o generated-sources/openapi --additional-properties=npmName=rest-client,supportsES6=true"
+    "api": "openapi-generator-cli generate -i docs/openapi.json -g typescript-axios -o src/generated-sources/openapi --additional-properties=npmName=rest-client,supportsES6=true"
   },
   "eslintConfig": {
     "extends": [
