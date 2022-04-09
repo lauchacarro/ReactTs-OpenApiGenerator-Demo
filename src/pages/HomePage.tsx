@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { Button, Table } from "react-bootstrap";
-import { User } from "../models/User";
+import { UserDto } from "rest-client";
+
+import { usersApi } from "../data/apiClient";
 
 interface HomePageProps {}
 
 const HomePage: React.FC<HomePageProps> = () => {
-  const [users, setUsers] = useState<User[]>();
+  const [users, setUsers] = useState<UserDto[]>();
 
   useEffect(() => {
-    fetch("https://localhost:44358/api/users")
-      .then((response) => response.json())
-      .then((data) => setUsers(data));
+
+    usersApi.getUsers()
+    .then((response) => setUsers(response.data));
+
   }, []);
 
   if (!users) {
@@ -50,12 +53,16 @@ const HomePage: React.FC<HomePageProps> = () => {
               <td>{u.name}</td>
               <td>{u.lastName}</td>
               <td>{u.email}</td>
-              <td>{u.isActive.toString()}</td>
+              <td>{u.isActive?.toString()}</td>
               <td>
-                <Button variant="outline-primary" href={"/update/" + u.id}>Editar</Button>
+                <Button variant="outline-primary" href={"/update/" + u.id}>
+                  Editar
+                </Button>
               </td>
               <td>
-                <Button variant="outline-danger" href={"/delete/" + u.id}>Eliminar</Button>
+                <Button variant="outline-danger" href={"/delete/" + u.id}>
+                  Eliminar
+                </Button>
               </td>
             </tr>
           ))}
